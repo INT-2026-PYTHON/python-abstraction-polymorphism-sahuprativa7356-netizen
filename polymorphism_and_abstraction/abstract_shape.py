@@ -99,3 +99,91 @@ Explanation:
 =================================================
 
 """
+from abc import ABC, abstractmethod
+
+
+# Abstract Base Class
+class Shape(ABC):
+    def __init__(self, name):
+        self.name = name
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+
+# Circle Class
+class Circle(Shape):
+    PI = 3.14159
+
+    def __init__(self, radius):
+        super().__init__("Circle")
+        self.radius = radius
+
+    def area(self):
+        return Circle.PI * self.radius * self.radius
+
+    def perimeter(self):
+        return 2 * Circle.PI * self.radius
+
+
+# Rectangle Class
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        super().__init__("Rectangle")
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+    def perimeter(self):
+        return 2 * (self.length + self.width)
+
+
+# Triangle Class
+class Triangle(Shape):
+    def __init__(self, a, b, c):
+        super().__init__("Triangle")
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def perimeter(self):
+        return self.a + self.b + self.c
+
+    def area(self):
+        # Heron's Formula
+        s = self.perimeter() / 2
+        return (s * (s - self.a) * (s - self.b) * (s - self.c)) ** 0.5
+
+
+# Driver Code
+
+# Attempt to create Shape directly
+try:
+    shape = Shape("nope")
+except TypeError as e:
+    print("Cannot create Shape directly:")
+    print(" ", e)
+
+print()
+
+# Create child objects
+shapes = [
+    Circle(5),
+    Rectangle(4, 6),
+    Triangle(3, 4, 5)
+]
+
+# Polymorphism: same code works for every shape
+for shape in shapes:
+    print(
+        f"{shape.name:<9} -> "
+        f"area={shape.area()}, "
+        f"perimeter={shape.perimeter()}"
+    )

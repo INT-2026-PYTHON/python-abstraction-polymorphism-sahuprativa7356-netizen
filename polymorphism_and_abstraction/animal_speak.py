@@ -81,3 +81,40 @@ Explanation:
 =================================================
 
 """
+# Parent Class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound")
+
+
+# Child Class: Dog
+class Dog(Animal):
+    def speak(self):
+        print(f"{self.name} says Woof")
+
+
+# Child Class: Cat
+class Cat(Animal):
+    def speak(self):
+        print(f"{self.name} says Meow")
+
+
+# Child Class: Cow
+class Cow(Animal):
+    def speak(self):
+        print(f"{self.name} says Moo")
+
+
+# Driver Code
+animals = [
+    Dog("Buddy"),
+    Cat("Whiskers"),
+    Cow("Bessie")
+]
+
+# Polymorphism in action
+for animal in animals:
+    animal.speak()

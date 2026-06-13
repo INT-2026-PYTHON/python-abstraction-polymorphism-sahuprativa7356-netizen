@@ -59,3 +59,48 @@ Explanation:
 =================================================
 
 """
+# Independent Class 1
+class CreditCard:
+    def __init__(self, holder_name, card_number):
+        self.holder_name = holder_name
+        self.card_number = card_number
+
+    def pay(self, amount):
+        print(
+            f"[CreditCard] {self.holder_name} paid "
+            f"{amount} via card {self.card_number}"
+        )
+
+
+# Independent Class 2
+class UPI:
+    def __init__(self, upi_id):
+        self.upi_id = upi_id
+
+    def pay(self, amount):
+        print(f"[UPI] {self.upi_id} paid {amount}")
+
+
+# Independent Class 3
+class Cash:
+    def __init__(self, person_name):
+        self.person_name = person_name
+
+    def pay(self, amount):
+        print(f"[Cash] {self.person_name} paid {amount} in cash")
+
+
+# Generic Checkout Function
+def checkout(payment_method, amount):
+    payment_method.pay(amount)
+
+
+# Driver Code
+methods = [
+    CreditCard("Alice", "4111-1111-1111-1111"),
+    UPI("bob@upi"),
+    Cash("Carol")
+]
+
+for method in methods:
+    checkout(method, 500)
